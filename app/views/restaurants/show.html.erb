@@ -1,13 +1,17 @@
 <h1><%= @restaurant.name.capitalize %></h1>
 <h4><%= @restaurant.category.capitalize %> cuisine</h4>
-<div>
-  <p><%= @restaurant.address %></p>
-  <p><%= @restaurant.phone_number %></p>
+<ul class="list-group-item">
+  <li><%= @restaurant.address %></li>
+  <li><%= @restaurant.phone_number %></li>
+</ul>
+<%= link_to 'Back to List', restaurants_path, class: "btn btn-primary"%>
+<div class="container mt-3">
+  <p><strong>Reviews</strong><p>
+    <% @reviews.each do |review| %>
+      <div class="list-group-item mb-3">
+        <p><%= "⭐️" * review.rating %></p>
+        <p><%= review.content %></p>
+      </div>
+    <% end %>
+  <%= link_to "Write a review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
 </div>
-<%= link_to 'Back to List', restaurants_path%>
-<p><strong>Reviews</strong><p>
-<% @reviews.each do |review| %>
-  <p><%= "⭐️" * review.rating %></p>
-  <p><%= review.content %></p>
-<% end %>
-<%= link_to "Write a review", new_restaurant_review_path(@restaurant) %>
