@@ -1,0 +1,13 @@
+<h1>Add a New Restaurant</h1>
+<% categories = ["chinese", "italian", "japanese", "french", "belgian"] %>
+<%# <% categories.each { |category| category.capitalize! } %>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :category, :collection => categories %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Back to list", restaurants_path %>
